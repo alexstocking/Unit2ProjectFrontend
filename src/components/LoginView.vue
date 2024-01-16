@@ -48,7 +48,7 @@ onMounted(checkSession)
 </script>
 
 <template>
-    <h1>Login</h1>
+    <h2>Login with Google</h2>
     <div v-if="isLoggedIn">
         <h2>Hello {{ userName }}</h2>
         <button @click="handleLogout">Log Out</button>

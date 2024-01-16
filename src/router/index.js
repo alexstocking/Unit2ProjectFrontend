@@ -12,7 +12,8 @@ import GenSevenView from '@/views/GenSevenView.vue'
 import GenEightView from '@/views/GenEightView.vue'
 import GenNineView from '@/views/GenNineView.vue'
 import FullPokedexView from '@/views/FullPokedexView.vue'
-import LoginView from '@/views/LoginView.vue'
+import NewPokemonView from '@/views/NewPokemonView.vue'
+import EditPokemonView from '@/views/EditPokemonView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -83,10 +84,15 @@ const router = createRouter({
       component: SinglePokemonView
     },
     {
-      path: '/login',
-      name: 'login',
-      component: LoginView
-    }
+      path: '/pokemon/add',
+      name: 'newpokemon',
+      component: NewPokemonView
+    },
+    {
+      path: '/pokemon/update/:id',
+      name: 'editpokemon',
+      component: EditPokemonView
+    },
   ]
 })
 
