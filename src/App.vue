@@ -1,80 +1,74 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+
+
 </script>
 
 <template>
   <header>
     <div class="wrapper">
-      <nav>
+      <nav class="nav">
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/pokemon">Pokémon</RouterLink>
+        <RouterLink to="/games">Games</RouterLink>
       </nav>
     </div>
+    <br>
+    <h1 class="title">Custom Pokédex</h1>
   </header>
 
   <RouterView />
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+<style>
+@import url('https://fonts.cdnfonts.com/css/pokemon-solid');
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
+body {
+  background-color: lightblue;
   text-align: center;
-  margin-top: 2rem;
+  /* background-image: url("https://wallpapers.com/images/hd/basic-pokeball-cover-mcs4xg2ash4hj4e9.jpg"); */
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+header {
+  font-family: 'Pokemon Solid', sans-serif;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  letter-spacing: 1px;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+.wrapper {
+  display: flex;
+  justify-content: center;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+.nav {
+  display: flex;
+  gap: 20px;
 }
 
-nav a:first-of-type {
-  border: 0;
+h1 {
+  margin-bottom: 50px;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+a {
+  text-decoration: none;
+  z-index: 1;
+  position: relative;
 }
+
+.title {
+  margin-bottom: 0;
+  padding-bottom: 30px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.pokemonName {
+  font-family: 'Pokemon Solid', sans-serif; 
+}
+
 </style>

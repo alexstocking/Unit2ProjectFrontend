@@ -25,15 +25,32 @@ onMounted(checkSession)
 
 <template>
   <main>
-    <h1>Custom Pokedex!</h1>
+    <h1>Welcome to the Custom Pokedex!</h1>
     <h2>Log in to create your own Pokédex!</h2>
+    <br>
     <h3>Check out and edit Pokémon you know already, or create brand new Pokémon!</h3>
+    <br>
     <h3>Take a look at the whole Pokédex, or check out pokémon by region!</h3>
+    <br>
     <div>
-      <button><RouterLink to="/pokemon">Search for a Pokémon by region</RouterLink></button> &nbsp;
-      <button><RouterLink to="/pokemon/pokedex">Check out the Full Pokedex</RouterLink></button>
+      <RouterLink to="/pokemon" class="btn btn-outline-primary">Search for a Pokémon by region!</RouterLink> &nbsp;
+      <RouterLink to="/pokemon/pokedex" class="btn btn-outline-primary">Check out the Full Pokedex!</RouterLink> &nbsp;
+      <RouterLink to="/games" class="btn btn-outline-primary">Find out information on the games!</RouterLink>
     </div>
-
+    <br>
     <LoginView />
+    <br>
+    <div>
+      <img src="https://static.wikia.nocookie.net/pokemon-fano/images/6/6f/Poke_Ball.png" alt="Pokédex">
+    </div>
   </main>
 </template>
+
+<style scoped>
+
+img {
+  margin: 0;
+  padding: 0
+}
+
+</style>

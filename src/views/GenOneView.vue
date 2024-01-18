@@ -25,10 +25,13 @@ onMounted(fetchData)
 
 <template>
     <h1>Pokemon Introduced in Red, Blue, and Yellow (The Kanto Region)</h1>
+    
     <div id="pkmnHolder">
     <div class="pokemon-grid" v-for="pokemon in pkmnBe" :key="pokemon.id">
-      <img :src="pokemon.image" :alt="pokemon.name" class="pokemon-image" />
-      <p><RouterLink :to="'/pokemon/' + pokemon.id">{{ capitalizeFirstLetter(pokemon.name) }}</RouterLink></p>
+      <RouterLink :to="'/pokemon/' + pokemon.id">
+        <img :src="pokemon.image" :alt="pokemon.name" class="pokemon-image" />
+      </RouterLink>
+      <p class="pokemonName"><RouterLink :to="'/pokemon/' + pokemon.id">{{ capitalizeFirstLetter(pokemon.name) }}</RouterLink></p>
     </div>
   </div>
 </template>

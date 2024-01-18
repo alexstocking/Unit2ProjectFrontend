@@ -1,55 +1,71 @@
 <script setup>
-// import { ref, onMounted }from 'vue'
-import { RouterLink } from 'vue-router';
-// import { useCookies } from 'vue3-cookies'
-// import { decodeCredential } from 'vue3-google-login'
+import { ref, onMounted } from 'vue'
+import { RouterLink } from 'vue-router'
 
+const gamesBe = ref([])
+
+
+const fetchData = () => {
+    fetch(`${import.meta.env.VITE_API_URL}/games`)
+    .then(response => response.json())
+    .then(result => {
+        gamesBe.value = result
+    })
+}
+
+
+
+onMounted(fetchData)
 
 </script>
 
 <template>
-  <h1>See the Pokémon introduced in each game!</h1>
-  <ul>
-    <li>
-      <RouterLink to="/pokemon/kanto">Red, Blue, and Yellow</RouterLink>
-    </li>
-    <li>
-      <RouterLink to="/pokemon/johto">Gold, Silver and Crystal</RouterLink>
-    </li>
-    <li>
-      <RouterLink to="/pokemon/hoenn">Ruby, Sapphire and Emerald</RouterLink>
-    </li>
-    <li>
-      <RouterLink to="/pokemon/sinnoh">Diamond, Pearl and Platinum</RouterLink>
-    </li>
-    <li>
-      <RouterLink to="/pokemon/unova">Black, White, Black 2 and White 2</RouterLink>
-    </li>
-    <li>
-      <RouterLink to="/pokemon/kalos">X and Y</RouterLink>
-    </li>
-    <li>
-      <RouterLink to="/pokemon/alola">Sun, Moon, Ultra Sun and Ultra Moon</RouterLink>
-    </li>
-    <li>
-      <RouterLink to="/pokemon/galar">Sword, Shield and Legends:Arceus</RouterLink>
-    </li>
-    <li>
-      <RouterLink to="/pokemon/paldea">Scarlet and Violet</RouterLink>
-    </li>
-    <br>
-    <li>
-      <RouterLink to="/pokemon/pokedex">See full Pokédex and create new Pokémon!</RouterLink>
-    </li>
-  </ul>
+<h1>Game List</h1>
+<h3>Check out information on each generation of Pokémon</h3>
+<div id="genForm">
+    <div id="gameList">
+        <ul>
+            <li v-for="game in gamesBe" :key="game.id">
+                <RouterLink :to="'/games/' + game._id"> 
+                    Generation {{ game.generation }}
+                 </RouterLink>
+            </li>
+        </ul>
+    </div>
+    <div id="gameImage">
+        <img id=bigPicture src="https://pm1.aminoapps.com/7850/908346db04390195a76d3f460888db8b58932dbdr1-1280-720v2_uhq.jpg" alt="Pokemon">
+    </div>
+</div>
+
 </template>
 
-<style>
-body {
-  text-align: center;
+<style scoped>
+
+#genForm {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 
-ul {
-  list-style-type: none;
+#gameList {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px
 }
+
+#gameList ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#gameList li {
+    margin-bottom: 10px;
+    font-size: 3.5vmin;
+}
+
+#bigPicture {
+    scale: 0.8;
+    margin-top: -60px
+}
+
+
 </style>

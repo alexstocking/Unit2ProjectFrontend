@@ -15,10 +15,7 @@ const fetchData = () => {
     fetch(`${import.meta.env.VITE_API_URL}/pokemon`)
     .then(response => response.json())
     .then(result => {
-        // Filter out duplicates based on the ID
-        const uniquePokemon = filterDuplicates(result);
-        
-        // Update pkmnBe with the filtered result
+        const uniquePokemon = filterDuplicates(result)
         pkmnBe.value = uniquePokemon;
     })
 }
@@ -28,13 +25,10 @@ const filterDuplicates = (pokemonList) => {
     const encounteredIds = new Set();
 
     for (const pokemon of pokemonList) {
-        // Check if the ID has been encountered before
         if (!encounteredIds.has(pokemon.id)) {
-            // If not encountered, add to the result and mark the ID as encountered
             uniquePokemon.push(pokemon);
             encounteredIds.add(pokemon.id);
         }
-        // If encountered, skip this Pokemon (don't add it to the result)
     }
 
     return uniquePokemon;
@@ -72,11 +66,13 @@ onMounted(() => {
   <div class="search-bar">
     <input type="text" v-model="searchTerm" placeholder="Search by name">
   </div>
-  <button v-if="isLoggedIn"><RouterLink :to="'/pokemon/add'">Add New Pokemon</RouterLink></button>
+  <RouterLink v-if="isLoggedIn" :to="'/pokemon/add'" class="btn btn-outline-primary">Add New Pokemon</RouterLink>
   <div id="pkmnHolder">
     <div class="pokemon-grid" v-for="pokemon in filteredPokemon" :key="pokemon.id">
-      <img :src="pokemon.image" :alt="pokemon.name" class="pokemon-image" />
-      <p><RouterLink :to="'/pokemon/' + pokemon.id">{{ capitalizeFirstLetter(pokemon.name) }}</RouterLink></p>
+      <RouterLink :to="'/pokemon/' + pokemon.id">
+        <img :src="pokemon.image" :alt="pokemon.name" class="pokemon-image" />
+      </RouterLink>
+      <p class="pokemonName"><RouterLink :to="'/pokemon/' + pokemon.id">{{ capitalizeFirstLetter(pokemon.name) }}</RouterLink></p>
     </div>
   </div>
 </template>
@@ -88,6 +84,17 @@ grid-template-columns: repeat(10, 1fr);
 gap: 5px;
 }
 
+h1 {
+  margin-bottom: 25px;
+}
+
+button {
+  margin-bottom: 25px
+}
+
+input {
+  width: 300px;
+}
 .pokemon-grid {
 text-align: center;
 margin: auto;

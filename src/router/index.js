@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import GameListView from '@/views/GameListView.vue'
+import GenListView from '@/views/GenListView.vue'
 import SinglePokemonView from '@/views/SinglePokemonView.vue'
 import GenOneView from '@/views/GenOneView.vue'
 import GenTwoView from '@/views/GenTwoView.vue'
@@ -14,6 +14,8 @@ import GenNineView from '@/views/GenNineView.vue'
 import FullPokedexView from '@/views/FullPokedexView.vue'
 import NewPokemonView from '@/views/NewPokemonView.vue'
 import EditPokemonView from '@/views/EditPokemonView.vue'
+import GameListView from '@/views/GameListView.vue'
+import SingleGameView from '@/views/SingleGameView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,8 +27,8 @@ const router = createRouter({
     },
     {
       path: '/pokemon',
-      name: 'games',
-      component: GameListView
+      name: 'generations',
+      component: GenListView
     },
     {
       path: '/pokemon/kanto',
@@ -92,6 +94,16 @@ const router = createRouter({
       path: '/pokemon/update/:id',
       name: 'editpokemon',
       component: EditPokemonView
+    },
+    {
+      path: '/games',
+      name: 'gamelist',
+      component: GameListView
+    },
+    {
+      path: '/games/:id',
+      name: 'singlegame',
+      component: SingleGameView
     },
   ]
 })
