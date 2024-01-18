@@ -10,15 +10,20 @@ const pokemon = ref({})
 const route = useRoute()
 const router = useRouter()
 
-const userName = ref('')
+const userEmail = ref()
 const isLoggedIn = ref(false)
-
 
 
 const loadPokemon = () => {
     const id = route.params.id
     isFavorite.value = false
-    fetch(`${import.meta.env.VITE_API_URL}/pokemon/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/pokemon/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'User-Email': userEmail.value
+      }
+    })
     .then(response => response.json())
     .then(result => {
         pokemon.value = result
@@ -54,13 +59,13 @@ const checkSession = () => {
     if( cookies.isKey('user_session') ) {
         isLoggedIn.value = true
         const userData = decodeCredential(cookies.get('user_session'))
-        userName.value = userData.given_name
+        userEmail.value = userData.email
     }
 }
 
 onMounted(() => {
-    loadPokemon()
-    checkSession()
+  checkSession()
+  loadPokemon()
 })
 
 function deletePokemon(pokemonId) {

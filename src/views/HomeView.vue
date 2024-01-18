@@ -33,9 +33,9 @@ onMounted(checkSession)
     <h3>Take a look at the whole Pokédex, or check out pokémon by region!</h3>
     <br>
     <div>
-      <RouterLink to="/pokemon" class="btn btn-outline-primary">Search for a Pokémon by region!</RouterLink> &nbsp;
-      <RouterLink to="/pokemon/pokedex" class="btn btn-outline-primary">Check out the Full Pokedex!</RouterLink> &nbsp;
-      <RouterLink to="/games" class="btn btn-outline-primary">Find out information on the games!</RouterLink>
+      <RouterLink to="/pokemon" class="btn btn-outline-primary" v-if="isLoggedIn">Search for a Pokémon by region!</RouterLink> &nbsp;
+      <RouterLink to="/pokemon/pokedex" class="btn btn-outline-primary" v-if="isLoggedIn">Check out the Full Pokedex!</RouterLink> &nbsp;
+      <RouterLink to="/games" class="btn btn-outline-primary" v-if="isLoggedIn">Find out information on the games!</RouterLink>
     </div>
     <br>
     <LoginView />
