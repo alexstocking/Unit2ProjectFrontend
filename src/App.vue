@@ -1,6 +1,23 @@
 <script setup>
+import { onMounted, ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
+import { useCookies } from 'vue3-cookies'
+import { decodeCredential } from 'vue3-google-login'
 
+const { cookies } = useCookies()
+const userName = ref('')
+const isLoggedIn = ref(false)
+
+
+const checkSession = () => {
+    if( cookies.isKey('user_session') ) {
+        isLoggedIn.value = true
+        const userData = decodeCredential(cookies.get('user_session'))
+        userName.value = userData.given_name
+    }
+}
+
+onMounted(checkSession)
 
 </script>
 
@@ -9,8 +26,8 @@ import { RouterLink, RouterView } from 'vue-router'
     <div class="wrapper">
       <nav class="nav">
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/pokemon">Pokémon</RouterLink>
-        <RouterLink to="/games">Games</RouterLink>
+        <RouterLink to="/pokemon" v-if="isLoggedIn">Pokémon</RouterLink>
+        <RouterLink to="/games" v-if="isLoggedIn">Games</RouterLink>
       </nav>
     </div>
     <br>

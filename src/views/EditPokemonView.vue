@@ -132,11 +132,11 @@ onMounted(loadPokemonData)
                     <input type="text" name="baseStatspatk" placeholder="Special Attack" v-model="pokemon.baseStats.specialAttack">
                 </div>
                 <div class="inputWithLabel">
-                    <label class="baseStatLabel specialLabel" for="baseStatsspdef">Special Defense</label>
+                    <label class="baseStatLabel specialLabel" for="baseStatsspdef">Special Defense:</label>
                     <input type="text" name="baseStatspdef" placeholder="Special Defense" v-model="pokemon.baseStats.specialDefense">
                 </div>
                 <div class="inputWithLabel">
-                    <label class="baseStatLabel" for="baseStatsspd">Speed</label>
+                    <label class="baseStatLabel" for="baseStatsspd">Speed:</label>
                     <input type="text" name="baseStatspd" placeholder="Speed" v-model="pokemon.baseStats.speed">
                 </div>
             </div>

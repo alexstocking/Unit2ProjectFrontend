@@ -25,6 +25,7 @@ const callback = (response) => {
     })
     .then(() => {
         console.log('session saved')
+        location.reload()
     })
     .catch(err => console.error(err))
 }
@@ -41,6 +42,7 @@ const handleLogout = () => {
     googleLogout()
     cookies.remove('user_session')
     isLoggedIn.value = false
+    location.reload();
 }
 
 onMounted(checkSession)
