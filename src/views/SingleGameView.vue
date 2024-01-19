@@ -35,7 +35,7 @@ onMounted(() => {
         <h4>Released: {{ game.yearReleased }}</h4>
         <h4 class="capitalise">Games Region: {{ game.region }}</h4>
         <h4>Popular Pokémon released in generation {{ game.generation }}: {{ game.wellKnownPokemon }}</h4>
-        <img :src="game.image" :alt="formatGamesReleased(game.gamesReleased)">
+        <img :src="game.image" :alt="formatGamesReleased(game.gamesReleased)" class="game-image">
         <br>
         <br>
         <RouterLink :to="'/pokemon/' + game.region" class="btn btn-outline-primary">Check out the pokemon of <span class="capitalise">{{ game.region }}</span></RouterLink>
@@ -52,6 +52,13 @@ onMounted(() => {
 
 #gameForm {
     padding: 0
+}
+
+.game-image {
+    max-height: 250px; /* Set the desired height */
+    width: auto;
+    border-radius: 8px;
+    margin-top: 10px;
 }
 
 </style>

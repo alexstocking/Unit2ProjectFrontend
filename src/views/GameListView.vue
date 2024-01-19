@@ -20,52 +20,56 @@ onMounted(fetchData)
 </script>
 
 <template>
-<h1>Game List</h1>
-<h3>Check out information on each generation of Pokémon</h3>
-<div id="genForm">
-    <div id="gameList">
-        <ul>
-            <li v-for="game in gamesBe" :key="game.id">
-                <RouterLink :to="'/games/' + game._id"> 
-                    Generation {{ game.generation }}
-                 </RouterLink>
-            </li>
-        </ul>
+    <h1>Game List</h1>
+    <h3>Check out information on each generation of Pokémon</h3>
+    <div id="genForm">
+      <div id="gameList">
+        <div class="card" v-for="game in gamesBe" :key="game.id">
+          <RouterLink :to="'/games/' + game._id"> 
+            <img class="thumbnail" :src="game.image" alt="Thumbnail">
+            <p>Generation {{ game.generation }}</p>
+          </RouterLink>
+        </div>
+      </div>
     </div>
-    <div id="gameImage">
-        <img id=bigPicture src="https://pm1.aminoapps.com/7850/908346db04390195a76d3f460888db8b58932dbdr1-1280-720v2_uhq.jpg" alt="Pokemon">
-    </div>
-</div>
-
 </template>
-
+  
 <style scoped>
-
-#genForm {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}
-
-#gameList {
+  #genForm {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+  }
+  
+  #gameList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .card {
+    flex: 0 1 calc(33.33% - 20px);
     padding: 20px;
     border: 1px solid #ccc;
-    border-radius: 10px
-}
-
-#gameList ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-#gameList li {
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .card:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .thumbnail {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
     margin-bottom: 10px;
-    font-size: 3.5vmin;
-}
-
-#bigPicture {
-    scale: 0.8;
-    margin-top: -60px
-}
+  }
+  
 
 
 </style>

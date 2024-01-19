@@ -19,6 +19,7 @@ const pokemon = ref({
         specialDefense: '',
         speed: ''
     },
+    flavor_text: '',
     image: ''
 })
 
@@ -58,7 +59,6 @@ const addPokemon = () => {
         },
         body: JSON.stringify({
             ...pokemon.value,
-            // types: typesArray,
             abilities: abilitiesArray,
             baseStats: baseStats
             // userId: getUserId()
@@ -110,6 +110,9 @@ const addPokemon = () => {
           <input type="text" name="baseStatsspdef" placeholder="Special Defense" v-model="pokemon.baseStats.specialDefense">
           <input type="text" name="baseStatsspd" placeholder="Speed" v-model="pokemon.baseStats.speed">
         </div>
+
+        <label for="flavor_text">Pokédex Entry:</label>
+        <textarea name="flavor_text" placeholder="Pokédex Entry" class="flavor-text" v-model="pokemon.flavor_text" rows="3"></textarea>  
   
         <label for="image">Image:</label>
         <input type="text" name="image" placeholder="Paste image link here" v-model="pokemon.image">
@@ -134,7 +137,7 @@ const addPokemon = () => {
     margin-top: 10px;
   }
   
-  input {
+  input, textarea {
     margin-bottom: 10px;
   }
   
@@ -150,9 +153,20 @@ const addPokemon = () => {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
+
+  #baseStats input {
+    width: 190px
+  }
   
   button {
     margin-top: 20px;
+    margin-bottom: 20px;
   }
+
+  ::placeholder {
+    font-size: 14px
+  }
+
+
   
   </style>

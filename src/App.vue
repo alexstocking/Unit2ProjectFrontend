@@ -39,11 +39,12 @@ onMounted(checkSession)
 
 <style>
 @import url('https://fonts.cdnfonts.com/css/pokemon-solid');
+@import url('https://fonts.googleapis.com/css2?family=Lemon&display=swap');
 
 body {
   background-color: lightblue;
   text-align: center;
-  /* background-image: url("https://wallpapers.com/images/hd/basic-pokeball-cover-mcs4xg2ash4hj4e9.jpg"); */
+  font-family: "Lemon", serif
 }
 
 header {
@@ -86,6 +87,7 @@ ul {
 
 .pokemonName {
   font-family: 'Pokemon Solid', sans-serif; 
+  font-size: 22px;
 }
 
 </style>

@@ -1,10 +1,17 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useCookies } from 'vue3-cookies'
+import { decodeCredential } from 'vue3-google-login'
+
+const { cookies } = useCookies()
 
 const route = useRoute()
 const router = useRouter()
 const pokemonId = route.params.id
+
+const userEmail = ref()
+const isLoggedIn = ref(false)
 
 const pokemon = ref({
     id: '',
@@ -33,7 +40,13 @@ const pokemonTypes = [
 
 
 const loadPokemonData = () => {
-    fetch(`${import.meta.env.VITE_API_URL}/pokemon/${pokemonId}`)
+    fetch(`${import.meta.env.VITE_API_URL}/pokemon/${pokemonId}`, {
+        method: 'GET',
+        headers: {
+        'Content-Type': 'application/json',
+        'User-Email': userEmail.value
+        }
+    }) 
     .then(res => res.json())
     .then(data => {
         pokemon.value = {
@@ -50,14 +63,13 @@ const loadPokemonData = () => {
 }
 
 const updatePokemon = () => {
-    // const typesArray = pokemon.value.types.split(',').map(type => type.trim())
     const abilitiesArray = pokemon.value.abilities.split(',').map(ability => ability.trim())
-
+    
     if(pokemon.value.name === '' || pokemon.value.id === '' || pokemon.value.types.length === 0) {
         alert('Fields marked with a * are required')
         return
     }
-
+    
     if (pokemon.value.types.length > 2 || abilitiesArray.length > 2 || abilitiesArray.filter(ability => ability.includes('(Hidden Ability)')).length > 1) {
         alert('Invalid input! Ensure there are no more than 2 types, no more than 2 abilities, and at most 1 hidden ability.');
         return; 
@@ -83,7 +95,18 @@ const updatePokemon = () => {
     .catch(err => console.error(err))
 }
 
-onMounted(loadPokemonData)
+const checkSession = () => {
+    if( cookies.isKey('user_session') ) {
+        isLoggedIn.value = true
+        const userData = decodeCredential(cookies.get('user_session'))
+        userEmail.value = userData.email
+    }
+}
+
+onMounted(() => {
+  checkSession()
+  loadPokemonData()
+})
 
 </script>
 
@@ -142,7 +165,7 @@ onMounted(loadPokemonData)
             </div>
             <label v-if="pokemon.id > 1025" for="image">Image: (There are lots of great fakemon images on google that you can add to you new Pokémon) </label>
             <input v-if="pokemon.id > 1025" type="text" name="image" placeholder="Paste image link here" v-model="pokemon.image">
-            <button @click="updatePokemon">Update Pokemon</button>
+            <button v-if="isLoggedIn" @click="updatePokemon">Update Pokemon</button>
         </form>
     </div>
     <div id="pokemonImage">
@@ -205,12 +228,14 @@ input {
 
 button {
     margin-top: 20px;   
+    margin-bottom: 20px;   
 }
 
 .inputWithLabel {
     display: flex;
     align-items: baseline; 
     margin-bottom: 10px;
+    font-size: 14px
 }
 
 .baseStatLabel {
@@ -221,6 +246,7 @@ button {
 #baseStats input {
     width: 120px;
 }
+
 
 
 </style>
