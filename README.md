@@ -1,5 +1,9 @@
 # Project 2 - Custom Pokédex - MERN Full Stack Application
 
+## My Portfolio Website
+
+https://alexstocking.netlify.app/
+
 ## Description
 
 Our second project gave us a chance to show what we had learnt about full-stack development. We used express as a framework for our backend, and Vue.js as the frontend. The goal was to create a CRUD (Create, Read, Update, Delete) application with an interesting visual frontend, as well as simple authorisation through Google. I decided to build a pokedex application based on a request from my nine year old son. I wanted for the user to be able to create, edit and delete their own custom pokemon, as well as editing existing pokemon.
