@@ -1,4 +1,4 @@
-# Project 2 - Custom Pokédex - MERN Full Stack Application
+# Project 2 - Custom Pokédex - MEVN Full Stack Application
 
 ## My Portfolio Website
 
